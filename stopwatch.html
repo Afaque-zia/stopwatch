@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" class="start">Start</button>
+    <button type="button" class="pouse">Pouse</button>
+    <button type="button" class="stop">Stop</button>
+    <h1></h1>
+
+    <script>
+        var start = document.querySelector(".start");
+        var pouse = document.querySelector(".pouse");
+        var stop = document.querySelector(".stop");
+        var h1 = document.querySelector("h1");
+        var x = '';
+        var milisecond = 0;
+        var second = 0;
+        var minute = 0;
+        start.addEventListener("click", startWatch)
+        pouse.addEventListener("click", pouseWatch)
+        stop.addEventListener("click", stopWatch)
+
+        function startWatch() {
+            x = setInterval(function() {
+
+                milisecond++
+
+                if (milisecond == 100) {
+                    milisecond = 0;
+                    second++;
+                };
+                if (second == 60) {
+                    minute++;
+                }
+                var showTime = (minute + " : " + second + " : " + milisecond);
+                console.log(minute + " : " + second + " : " + milisecond)
+                h1.innerHTML = showTime;
+            }, 10)
+        }
+
+        function pouseWatch() {
+            clearInterval(x)
+        }
+
+        function stopWatch() {
+            milisecond = 0;
+            second = 0;
+            minute = 0;
+            showTime = (milisecond + " : " + second + " : " + minute);
+            h1.innerHTML = showTime;
+            clearInterval(x)
+        }
+    </script>
+</body>
+
+</html>
